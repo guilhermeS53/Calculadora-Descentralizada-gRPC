@@ -15,6 +15,7 @@ function calcularDivisao(call, callback) {
 
 const server = new grpc.Server();
 server.addService(calculadora_proto.Calculadora.service, { Calcular: calcularDivisao });
-server.bind('127.0.0.1:50054', grpc.ServerCredentials.createInsecure());
+server.bindAsync('127.0.0.1:50054', grpc.ServerCredentials.createInsecure(), () => {
 console.log('Servidor de Divisão rodando em 127.0.0.1:50054');
 server.start();
+});

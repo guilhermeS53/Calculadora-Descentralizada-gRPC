@@ -8,7 +8,7 @@ const client = new calculadora_proto.Calculadora('localhost:50050', grpc.credent
 const operacao = {
   numero1: 10,
   numero2: 5,
-  operador: '+', // Operacao de acordo com a necessidade
+  operador: '*', // Operacao de acordo com a necessidade
 };
 
 client.Calcular(operacao, (err, response) => {

@@ -1,4 +1,4 @@
-const grpc = require('grpc');
+const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const packageDefinition = protoLoader.loadSync('./calculadora.proto');
 const calculadora_proto = grpc.loadPackageDefinition(packageDefinition).calculadora;
@@ -11,12 +11,7 @@ function calcularSubtracao(call, callback) {
 
 const server = new grpc.Server();
 server.addService(calculadora_proto.Calculadora.service, { Calcular: calcularSubtracao });
-
-server.bindAsync('127.0.0.1:50052', grpc.ServerCredentials.createInsecure(), (err, port) => {
-  if (!err) {
-    console.log(`Servidor de Subtração rodando em 127.0.0.1:${port}`);
-    server.start();
-  } else {
-    console.error('Erro ao vincular o servidor:', err);
-  }
+server.bindAsync('127.0.0.1:50052', grpc.ServerCredentials.createInsecure(), () => {
+console.log('Servidor de Subtração rodando em 127.0.0.1:50052');
+server.start();
 });

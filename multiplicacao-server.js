@@ -11,6 +11,7 @@ function calcularMultiplicacao(call, callback) {
 
 const server = new grpc.Server();
 server.addService(calculadora_proto.Calculadora.service, { Calcular: calcularMultiplicacao });
-server.bind('127.0.0.1:50053', grpc.ServerCredentials.createInsecure());
+server.bindAsync('127.0.0.1:50053', grpc.ServerCredentials.createInsecure(), () => {
 console.log('Servidor de Multiplicação rodando em 127.0.0.1:50053');
 server.start();
+});
