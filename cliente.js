@@ -6,9 +6,9 @@ const calculadora_proto = grpc.loadPackageDefinition(packageDefinition).calculad
 const client = new calculadora_proto.Calculadora('localhost:50050', grpc.credentials.createInsecure());
 
 const operacao = {
-  numero1: 10,
-  numero2: 5,
-  operador: '*', // Operacao de acordo com a necessidade
+  numero1: 20,
+  numero2: 8,
+  operador: '+', // Altere o operador conforme necessário
 };
 
 client.Calcular(operacao, (err, response) => {
